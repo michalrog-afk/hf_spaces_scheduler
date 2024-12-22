@@ -1,0 +1,31 @@
+name: Restart Hugging Face Space
+
+on:
+ schedule:
+   - cron: '0 0 */14 * *' # Runs every 14 days
+   
+ workflow_dispatch:  #允许手动
+
+jobs:
+  restart-space:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install huggingface_hub
+          
+      - name: Restart Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USER: ${{ secrets.HF_USER }}
+          HF_SPACE: ${{ secrets.HF_SPACE }}
+        run: python restart_space.py
