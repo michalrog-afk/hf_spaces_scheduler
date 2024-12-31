@@ -2,7 +2,11 @@ import os
 import requests
 from datetime import datetime
 from pathlib import Path
-from huggingface_hub import HfApi
+from huggingface_hub import (
+    HfApi,
+    hf_hub_download,
+    login
+)
 import tempfile
 import shutil
 
