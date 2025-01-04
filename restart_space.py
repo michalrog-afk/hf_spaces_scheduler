@@ -16,13 +16,19 @@ def restart_space():
     user = os.environ['HF_USER']
     space = os.environ['HF_SPACE']
     repo_id = f"{user}/{space}" #  Please replace this value with the name of your own Hugging Face Space.
-
+    # 重启hf
+    # try:
+    #     HfApi().restart_space(repo_id=repo_id, token=token)
+    #     print(f"Successfully restarted Space: {repo_id}")
+    # except Exception as e:
+    #     print(f"Failed to restart Space {repo_id}: {e}")
+    
+    #重构hf
     try:
-        HfApi().restart_space(repo_id=repo_id, token=token)
-        print(f"Successfully restarted Space: {repo_id}")
+        HfApi().restart_space(repo_id=repo_id, token=token, factory_reboot=True)
+        print(f"Successfully rebuild Space: {repo_id}")
     except Exception as e:
-        print(f"Failed to restart Space {repo_id}: {e}")
-
+        print(f"Failed to rebuild Space {repo_id}: {e}")
 
 if __name__ == "__main__":
    
