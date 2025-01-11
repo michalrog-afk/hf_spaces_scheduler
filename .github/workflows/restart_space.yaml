@@ -2,7 +2,7 @@
 name: Backup and Restart Space
 on:
   schedule:
-    - cron: '0 4 */3 * *'  # 每3天4点执行一次
+    - cron: '0 4 */2 * *'  # 每2天4点执行一次
   workflow_dispatch:  # 允许手动触发
 
 jobs:
